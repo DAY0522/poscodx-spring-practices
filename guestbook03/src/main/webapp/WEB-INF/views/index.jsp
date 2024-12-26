@@ -3,6 +3,7 @@
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
 <%@ taglib uri="jakarta.tags.functions" prefix="fn" %>
+<% pageContext.setAttribute("newLine", "\n"); %>
 
 <html>
 <head>
@@ -37,10 +38,10 @@
             </td>
             <td>${vo.regDate}
             </td>
-            <td><a href="/guestbook03/deleteform/${vo.id}">삭제</a></td>
+            <td><a href="/guestbook03/delete/${vo.id}">삭제</a></td>
         </tr>
         <tr>
-            <td colspan=4>${vo.contents}
+            <td colspan=4>${fn:replace(vo.contents, newLine, "<br>")}
             </td>
         </tr>
     </table>

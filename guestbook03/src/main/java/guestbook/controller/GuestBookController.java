@@ -5,9 +5,7 @@ import guestbook.vo.GuestbookVo;
 import jakarta.servlet.http.HttpServlet;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,14 +34,14 @@ public class GuestBookController extends HttpServlet {
         return "redirect:/";
     }
 
-    // deleteform
-    @RequestMapping("/deleteform/{id}")
+    // delete(GET)
+    @GetMapping("/delete/{id}")
     public String deleteform(@PathVariable("id") Long id) {
-        return "deleteform";
+        return "delete";
     }
 
-    // delete
-    @RequestMapping("delete/{id}")
+    // delete(POST)
+    @PostMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id, @RequestParam("password") String password) {
         guestbookRepository.deleteByIdAndPassword(id, password);
         return "redirect:/";
