@@ -6,13 +6,10 @@
         <artifactId>spring-practices</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>emaillist03</artifactId>
+    <artifactId>guestbook03</artifactId>
     <packaging>war</packaging>
-    <name>emaillist03 Maven Webapp</name>
-
-    <build>
-        <finalName>emaillist03</finalName>
-    </build>
+    <name>guestbook03 Maven Webapp</name>
+    <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
@@ -73,4 +70,7 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <finalName>guestbook03</finalName>
+    </build>
 </project>

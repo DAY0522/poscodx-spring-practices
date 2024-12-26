@@ -20,5 +20,5 @@
     </bean>
 
     <context:annotation-config/>
-    <context:component-scan base-package="emaillist03.controller"/>
+    <context:component-scan base-package="guestbook.controller"/>
 </beans>

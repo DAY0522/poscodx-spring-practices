@@ -7,6 +7,7 @@
   <modules>
     <module>hellospring</module>
     <module>emaillist03</module>
+      <module>guestbook03</module>
   </modules>
   <version>1.0-SNAPSHOT</version>
   <name>spring-practices Maven Webapp</name>
