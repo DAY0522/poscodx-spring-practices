@@ -12,6 +12,19 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
         http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
+    <!-- DataSource(Conntection Pool)-->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="org.mariadb.jdbc.Driver"/>
+        <property name="url" value="jdbc:mariadb://192.168.64.2/webdb"/>
+        <property name="username" value="webdb"/>
+        <property name="password" value="webdb"/>
+    </bean>
+
+    <!-- JdbcContext -->
+    <bean class="guestbook.repository.template.JdbcContext">
+        <constructor-arg index="0" ref="dataSource" />
+    </bean>
+
     <context:annotation-config/>
 
     <context:component-scan base-package="guestbook.repository">

@@ -10,20 +10,34 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-public class GuestBookController extends HttpServlet {
+public class GuestbookController extends HttpServlet {
 
     private GuestbookRepository guestbookRepository;
 
-    public GuestBookController(GuestbookRepository guestbookRepository) {
+    public GuestbookController(GuestbookRepository guestbookRepository) {
         this.guestbookRepository = guestbookRepository;
     }
 
     // index
     @RequestMapping("/")
     public String index(Model model) {
+/*
+		ServletContext sc = request.getServletContext();
+		Enumeration<String> e = sc.getAttributeNames();
+		while(e.hasMoreElements()) {
+			String name = e.nextElement();
+			System.out.println(name);
+		}
+		ApplicationContext ac1 = (ApplicationContext)sc.getAttribute("org.springframework.web.context.WebApplicationContext.ROOT");
+		ApplicationContext ac2 = (ApplicationContext)sc.getAttribute("org.springframework.web.servlet.FrameworkServlet.CONTEXT.spring");
+		GuestbookRepository repository = ac1.getBean(GuestbookRepository.class);
+		System.out.println(repository);
+		GuestbookController controller = ac2.getBean(GuestbookController.class);
+		System.out.println(controller);
+		System.out.println(ac1 == ac2);
+		*/
 
-        List<GuestbookVo> list = guestbookRepository.findAll();
-        model.addAttribute("list", list);
+        model.addAttribute("list", guestbookRepository.findAll());
         return "index";
     }
 
