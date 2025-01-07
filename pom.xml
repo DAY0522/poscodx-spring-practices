@@ -11,6 +11,9 @@
       <module>logex</module>
       <module>fileupload</module>
       <module>locale</module>
+      <module>untitled</module>
+    <module>aop</module>
+    <module>validation</module>
   </modules>
   <version>1.0-SNAPSHOT</version>
   <name>spring-practices Maven Webapp</name>
