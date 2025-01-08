@@ -1,6 +1,6 @@
 package guestbook.controller;
 
-import guestbook.repository.GuestbookRepository;
+import guestbook.service.GuestbookService;
 import guestbook.vo.GuestbookVo;
 import jakarta.servlet.http.HttpServlet;
 import org.springframework.stereotype.Controller;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class GuestbookController extends HttpServlet {
 
-    private GuestbookRepository guestbookRepository;
+    private GuestbookService guestbookService;
 
-    public GuestbookController(GuestbookRepository guestbookRepository) {
-        this.guestbookRepository = guestbookRepository;
+    public GuestbookController(GuestbookService guestbookService) {
+        this.guestbookService = guestbookService;
     }
 
     // index
@@ -35,14 +35,14 @@ public class GuestbookController extends HttpServlet {
 		System.out.println(ac1 == ac2);
 		*/
 
-        model.addAttribute("list", guestbookRepository.findAll());
+        model.addAttribute("list", guestbookService.getContentsList());
         return "index";
     }
 
     // add
     @RequestMapping("/add")
     public String add(GuestbookVo vo) {
-        guestbookRepository.insert(vo);
+        guestbookService.addContents(vo);
         return "redirect:/";
     }
 
@@ -55,7 +55,9 @@ public class GuestbookController extends HttpServlet {
     // delete(POST)
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id, @RequestParam("password") String password) {
-        guestbookRepository.deleteByIdAndPassword(id, password);
+        guestbookService.deleteContexts(
+                id, password);
+
         return "redirect:/";
     }
 }

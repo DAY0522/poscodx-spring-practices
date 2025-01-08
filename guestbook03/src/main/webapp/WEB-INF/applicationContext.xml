@@ -20,14 +20,19 @@
         <property name="password" value="webdb"/>
     </bean>
 
+    <!-- Transaction Manage -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <constructor-arg index="0" ref="dataSource"/>
+    </bean>
+
     <!-- JdbcContext -->
     <bean class="guestbook.repository.template.JdbcContext">
-        <constructor-arg index="0" ref="dataSource" />
+        <constructor-arg index="0" ref="dataSource"/>
     </bean>
 
     <context:annotation-config/>
 
-    <context:component-scan base-package="guestbook.repository">
+    <context:component-scan base-package="guestbook.repository, guestbook.service">
         <context:include-filter type="annotation"
                                 expression="org.springframework.stereotype.Repository"/>
         <context:include-filter type="annotation"
