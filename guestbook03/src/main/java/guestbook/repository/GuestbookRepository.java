@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -19,7 +20,7 @@ public class GuestbookRepository {
     }
 
     public List<GuestbookVo> findAll() {
-        return jdbcContext.queryForList(
+        return jdbcContext.query(
                 "select id, name, contents, date_format(reg_date, '%Y-%m-%d %h:%i:%s') from guestbook order by reg_date desc",
                 new RowMapper<GuestbookVo>() {
                     @Override
@@ -37,14 +38,21 @@ public class GuestbookRepository {
     }
 
     public int insert(GuestbookVo vo) {
-        return jdbcContext.excuteUpdate(
+        return jdbcContext.update(
                 "insert into guestbook values(null, ?, ?, ?, now())",
                 new Object[] {vo.getName(), vo.getPassword(), vo.getContents()});
     }
 
     public int deleteByIdAndPassword(Long id, String password) {
-        return jdbcContext.excuteUpdate(
+        return jdbcContext.update(
                 "delete from guestbook where id=? and password=?",
                 new Object[] {id, password});
+    }
+
+    public GuestbookVo findById(Long id) {
+        return jdbcContext.queryForObject(
+                "select id, name, contents, date_format(reg_date, '%Y-%m-%d') as regDate from guestbook where id = ?",
+                new Object[]{id},
+                new BeanPropertyRowMapper<>(GuestbookVo.class));
     }
 }
