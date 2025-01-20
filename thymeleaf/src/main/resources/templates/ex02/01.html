@@ -20,7 +20,7 @@
 	[[${servletContext.getAttribute('vo').name }]] <br>
 	
 	<hr>== application scope(ApplicationContext, Spring Bean) =====<br>
-	[[${@vo.no }]] <br>
+	[[${@vo.no }]] <br> <!-- 빈 객체를 직접 참조하므로 @를 써야함. -->
 	[[${@vo.name }]] <br>
 
 

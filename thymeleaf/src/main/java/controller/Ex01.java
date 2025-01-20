@@ -19,9 +19,15 @@ public class Ex01 {
         return "ex01/01";
     }
 
+    @GetMapping("/02")
+    public String _02() {
+        // JSTL view
+        return "views/ex01/02";
+    }
+
     @GetMapping("/03")
     public String _03(Model model) {
-        // 데이터 넘기는 과정은 Jstlel과 동일
+        // 데이터 넘기는 과정은 Jstlel과 동일. 렌더링 방식만 다르다.
         model.addAttribute("iVal", 10);
         model.addAttribute("lVal", 10);
         model.addAttribute("fVal", 3.14f);
